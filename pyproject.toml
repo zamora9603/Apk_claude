@@ -1,0 +1,11 @@
+[project]
+name = "asistencia"
+version = "1.0.0"
+description = "Control de asistencia"
+requires-python = ">=3.10"
+dependencies = ["flet"]
+
+[tool.flet]
+org = "com.asistencia"
+product = "Control de Asistencia"
+company = "Asistencia"
