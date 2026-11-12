@@ -24,7 +24,7 @@ jobs:
         run: pip install flet
 
       - name: Compilar APK
-        run: flet build apk -v
+        run: flet build apk -v --yes
 
       - name: Subir APK
         uses: actions/upload-artifact@v4
