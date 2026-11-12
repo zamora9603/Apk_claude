@@ -1,11 +1,33 @@
-[project]
-name = "asistencia"
-version = "1.0.0"
-description = "Control de asistencia"
-requires-python = ">=3.10"
-dependencies = ["flet"]
+name: Build APK
 
-[tool.flet]
-org = "com.asistencia"
-product = "Control de Asistencia"
-company = "Asistencia"
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Instalar Flet
+        run: pip install flet
+
+      - name: Compilar APK
+        run: flet build apk -v --yes
+
+      - name: Subir APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: apk
+          path: build/apk
